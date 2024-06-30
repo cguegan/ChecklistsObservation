@@ -12,50 +12,87 @@ struct ChecklistEditSheet: View {
     @Environment(\.dismiss) var dismiss
     @Bindable var checklist: ChecklistModel
     
+    
+    // MARK: - Main body
+    // —————————————————
+    
     var body: some View {
         NavigationStack {
             Form {
-                Section(header: Text("Checklist")) {
-                    TextField("Checklist title", text: $checklist.title)
-                    TextField("Notes", text: $checklist.notes, axis: .vertical)
-                }
-                
-                Section(header: Text("Statistics")) {
-                    HStack {
-                        Text("Checked:")
-                        Spacer()
-                        Text("12 times")
-                            .foregroundStyle(.secondary)
-                    }
-                    
-                    HStack {
-                        Text("Last executed:")
-                        Spacer()
-                        Text(Date.now.formatted(date: .abbreviated, time: .shortened))
-                            .foregroundStyle(.secondary)
-                    }
-                    
-                    HStack {
-                        Text("Number of checklines:")
-                        Spacer()
-                        Text("\(checklist.lines.count)")
-                            .foregroundStyle(.secondary)
-                    }
-                
-                }
+                checklistDataSection
+                statisticsSection
             }
-            .navigationTitle("Edit Checkline")
+            .navigationTitle("Edit Checklist")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Done") {
-                        dismiss()
-                    }
-                }
+                trailingToolbar
             }
         }
     }
 }
+
+
+// MARK: - Extracted Views
+// ———————————————————————
+
+extension ChecklistEditSheet {
+    
+    /// Checklist Data Section
+    ///
+    var checklistDataSection: some View {
+        Section(header: Text("Checklist")) {
+            TextField("Checklist title", text: $checklist.title)
+            TextField("Notes", text: $checklist.notes, axis: .vertical)
+        }
+    }
+    
+    /// Statistic Section
+    ///
+    var statisticsSection: some View {
+        Section(header: Text("Statistics")) {
+            HStack {
+                Text("Checked:")
+                Spacer()
+                Text("12 times")
+                    .foregroundStyle(.secondary)
+            }
+            
+            HStack {
+                Text("Last executed:")
+                Spacer()
+                Text(Date.now.formatted(date: .abbreviated, time: .shortened))
+                    .foregroundStyle(.secondary)
+            }
+            
+            HStack {
+                Text("Number of checklines:")
+                Spacer()
+                Text("\(checklist.lines.count)")
+                    .foregroundStyle(.secondary)
+            }
+        }
+    }
+    
+}
+
+
+// MARK: - Toolbar Content
+// ———————————————————————
+
+extension ChecklistEditSheet {
+    @ToolbarContentBuilder
+    private var trailingToolbar: some ToolbarContent {
+        ToolbarItem(placement: .navigationBarTrailing) {
+            Button("Done") {
+                dismiss()
+            }
+        }
+    }
+}
+    
+
+// MARK: - Preview
+// ———————————————
 
 #Preview {
     ChecklistEditSheet(checklist: ChecklistModel.bridgeSamples.first!)

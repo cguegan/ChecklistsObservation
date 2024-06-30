@@ -12,27 +12,20 @@ struct ChecklistsView: View {
     @State var checklistsStore: ChecklistsStore = ChecklistsStore()
     @State var selectedList: ChecklistModel?
     
+    
+    // MARK: - Main body
+    // —————————————————
+    
     var body: some View {
         NavigationStack {
             List {
                 ForEach(checklistsStore.checklists) { checklist in
-                    NavigationLink(destination: ChecklistDetailView(checklist: checklist)) {
-                        Text(checklist.title)
-                    }
+                    checklistRow(checklist)
                     .swipeActions(edge: .trailing) {
-                        Button(role: .destructive) {
-                            print("Deleting checklist")
-                        } label: {
-                            Label("Delete", systemImage: "trash.fill")
-                        }
+                        deleteSwipeButton
                     }
                     .swipeActions(edge: .leading) {
-                        Button() {
-                            selectedList = checklist
-                        } label: {
-                            Label("Edit", systemImage: "rectangle.and.pencil.and.ellipsis")
-                        }
-                        .tint(.blue)
+                        editSwipeButton(checklist)
                     }
                 }
                 .onMove(perform: move)
@@ -42,21 +35,87 @@ struct ChecklistsView: View {
                 ChecklistEditSheet(checklist: checklist)
             }
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        checklistsStore.checklists.append(ChecklistModel(title: "New Checklist", notes: "", lines: []))
-                    } label: {
-                        Image(systemName: "plus.circle")
-                    }
-                }
+                trailingToolbar
             }
         }
     }
+}
+
+// MARK: - Extracted Views
+// ———————————————————————
+
+extension ChecklistsView {
+    
+    /// Checklist Row
+    ///
+    private func checklistRow(_ checklist: ChecklistModel) -> some View {
+        NavigationLink(destination: ChecklistDetailView(checklist: checklist)) {
+            Text(checklist.title)
+        }
+    }
+    
+    /// Delete Swipe Button
+    ///
+    private var deleteSwipeButton: some View {
+        Button(role: .destructive) {
+            // TODO: -
+            print("Deleting checklist")
+        } label: {
+            Label("Delete", systemImage: "trash.fill")
+        }
+    }
+    
+    /// Edit Swipe Button
+    ///
+    private func editSwipeButton(_ checklist: ChecklistModel) -> some View {
+        Button() {
+            selectedList = checklist
+        } label: {
+            Label("Edit", systemImage: "rectangle.and.pencil.and.ellipsis")
+        }
+        .tint(.blue)
+    }
+    
+}
+
+
+// MARK: - Toolbar Content
+// ———————————————————————
+
+extension ChecklistsView {
+    @ToolbarContentBuilder
+    private var trailingToolbar: some ToolbarContent {
+        ToolbarItem(placement: .navigationBarTrailing) {
+            Button {
+                checklistsStore.checklists.append(
+                    ChecklistModel(
+                        title: "New Checklist",
+                        notes: "",
+                        lines: []
+                    )
+                )
+            } label: {
+                Image(systemName: "plus.circle")
+            }
+        }
+    }
+}
+    
+    
+// MARK: - Methods
+// ————————————————
+
+extension ChecklistsView {
     
     func move(from: IndexSet, to: Int) {
         checklistsStore.checklists.move(fromOffsets: from, toOffset: to)
     }
+    
 }
+
+
+// MARK: - Preview
+// ———————————————
 
 #Preview {
     ChecklistsView()

@@ -12,85 +12,149 @@ struct ChecklistDetailView: View {
     var checklist: ChecklistModel
     @State var selectedLine: ChecklineModel?
     
+    
+    // MARK: - Main body
+    // —————————————————
+    
     var body: some View {
         NavigationStack {
             List {
-                if !checklist.notes.isEmpty {
-                    Text(checklist.notes)
-                        .font(.callout)
-                        .foregroundColor(.secondary)
-                }
-                
+                notesView
                 ForEach (checklist.lines) { line in
-                    HStack (alignment: .top) {
-                        
-                        Image(systemName: line.isChecked ? "checkmark.square" : "square")
-                            .font(.title3)
-                            .foregroundColor(line.isChecked ? .accentColor: .gray)
-                            .onTapGesture {
-                                line.isChecked.toggle()
-                            }
-                        
-                            VStack(alignment: .leading) {
-                                Text(line.title)
-                                    .foregroundColor(line.isChecked ? .secondary : .primary)
-                                if !line.notes.isEmpty {
-                                    Text(line.notes)
-                                        .font(.caption)
-                                        .foregroundStyle(.secondary)
-                                }
-                            }
-                            
-                            
-                            Spacer()
-                            Text("\(line.action)".uppercased())
-                                .font(.caption)
-                                .bold(line.isChecked)
-                                .foregroundColor(line.isChecked ? .accentColor : .secondary)
-                                .padding(.top, 4)
-                        
-                        
-                    }
+                    checklineRow(line)
                     .swipeActions(edge: .trailing) {
-                        Button(role: .destructive) {
-                            print("Deleting checkline")
-                        } label: {
-                            Label("Delete", systemImage: "trash.fill")
-                        }
+                        deleteSwipeButton
                     }
                     .swipeActions(edge: .leading) {
-                        Button() {
-                            selectedLine = line
-                        } label: {
-                            Label("Edit", systemImage: "rectangle.and.pencil.and.ellipsis")
-                        }
-                        .tint(.blue)
+                        editSwipeButton(line)
                     }
                 }
                 .onMove(perform: move)
-
             }
             .navigationTitle("\(checklist.title)")
             .sheet(item: $selectedLine) { line in
-                    ChecklineEditSheet(checkline: line)
+                ChecklineEditSheet(checkline: line)
             }
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        checklist.lines.append(ChecklineModel(title: "New item", action: "Checked"))
-                    } label: {
-                        Image(systemName: "plus.circle")
-                    }
-                }
+                trailingToolbar
+            }
+        }
+    }
+}
+
+// MARK: - Extracted Views
+// ———————————————————————
+
+extension ChecklistDetailView {
+    
+    /// Notes view
+    ///
+    private var notesView: some View {
+        Group {
+            if !checklist.notes.isEmpty {
+                Text(checklist.notes)
+                    .font(.callout)
+                    .foregroundColor(.secondary)
             }
         }
     }
     
+    /// Checkline Row
+    ///
+    private func checklineRow(_ line: ChecklineModel) -> some View {
+        HStack (alignment: .top) {
+            
+            // Icon
+            Image(systemName: line.isChecked ? "checkmark.square" : "square")
+                .font(.title3)
+                .foregroundColor(line.isChecked ? .accentColor: .gray)
+            
+            VStack(alignment: .leading) {
+                // Title
+                Text(line.title)
+                    .foregroundColor(line.isChecked ? .secondary : .primary)
+                // Notes
+                if !line.notes.isEmpty {
+                    Text(line.notes)
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+            }
+            
+            Spacer()
+            
+            // Action
+            Text("\(line.action)".uppercased())
+                .font(.caption)
+                .bold(line.isChecked)
+                .foregroundColor(line.isChecked ? .accentColor : .secondary)
+                .padding(.top, 4)
+        }
+        .contentShape(Rectangle())
+        .onTapGesture {
+            line.isChecked.toggle()
+        }
+    }
+    
+    /// Delete Swipe Button
+    ///
+    private var deleteSwipeButton: some View {
+        Button(role: .destructive) {
+            print("Deleting checkline")
+        } label: {
+            Label("Delete", systemImage: "trash.fill")
+        }
+    }
+    
+    /// Edit Swipe Button
+    private func editSwipeButton(_ line: ChecklineModel) -> some View {
+        Button() {
+            selectedLine = line
+        } label: {
+            Label("Edit", systemImage: "rectangle.and.pencil.and.ellipsis")
+        }
+        .tint(.blue)
+    }
+    
+}
+
+
+// MARK: - Toolbar Content
+// ———————————————————————
+
+extension ChecklistDetailView {
+    @ToolbarContentBuilder
+    private var trailingToolbar: some ToolbarContent {
+        ToolbarItem(placement: .navigationBarTrailing) {
+            Button {
+                checklist.lines.append(
+                    ChecklineModel(
+                        title: "New item",
+                        action: "Checked"
+                    )
+                )
+            } label: {
+                Image(systemName: "plus.circle")
+            }
+        }
+    }
+}
+
+
+// MARK: - Methods
+// ———————————————
+
+extension ChecklistDetailView {
+
     func move(from: IndexSet, to: Int) {
         checklist.lines.move(fromOffsets: from, toOffset: to)
     }
     
 }
+
+
+// MARK: - Preview
+// ———————————————
 
 #Preview {
     ChecklistDetailView(checklist: ChecklistModel.bridgeSamples[1])

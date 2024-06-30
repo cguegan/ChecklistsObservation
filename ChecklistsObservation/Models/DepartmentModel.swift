@@ -9,7 +9,7 @@ import Foundation
 import Observation
 
 @Observable
-class DepartmentModel: Identifiable, Codable {
+class DepartmentModel: Identifiable {
     var id: String
     var title: String
     var icon: String

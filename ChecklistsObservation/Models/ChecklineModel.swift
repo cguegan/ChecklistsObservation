@@ -9,7 +9,7 @@ import Foundation
 import Observation
 
 @Observable
-class ChecklineModel: Identifiable, Codable {
+class ChecklineModel: Identifiable {
     var id: String
     var title: String
     var action: String

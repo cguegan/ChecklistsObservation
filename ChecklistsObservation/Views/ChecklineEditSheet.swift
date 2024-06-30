@@ -12,6 +12,10 @@ struct ChecklineEditSheet: View {
     @Environment(\.dismiss) var dismiss
     @Bindable var checkline: ChecklineModel
     
+    
+    // MARK: - Main body
+    // —————————————————
+    
     var body: some View {
         NavigationStack {
             Form {
@@ -24,16 +28,29 @@ struct ChecklineEditSheet: View {
             }
             .navigationTitle("Edit Checkline")
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Done") {
-                        dismiss()
-                    }
-                }
+            .toolbar { trailingToolbar }
+        }
+    }
+}
+
+
+// MARK: - Toolbar Content
+// ———————————————————————
+
+extension ChecklineEditSheet {
+    @ToolbarContentBuilder
+    private var trailingToolbar: some ToolbarContent {
+        ToolbarItem(placement: .navigationBarTrailing) {
+            Button("Done") {
+                dismiss()
             }
         }
     }
 }
+
+
+// MARK: - Preview
+// ———————————————
 
 #Preview {
     ChecklineEditSheet(checkline: ChecklistModel.bridgeSamples.first!.lines.first!)

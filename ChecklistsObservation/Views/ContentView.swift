@@ -9,12 +9,18 @@ import SwiftUI
 
 struct ContentView: View {
 
+    
+    // MARK: - Main body
+    // —————————————————
+    
     var body: some View {
         ChecklistsView()
     }
 }
 
 
+// MARK: - Preview
+// ———————————————
 
 #Preview {
     ContentView()

@@ -10,6 +10,9 @@ import Foundation
 extension DepartmentModel {
     
     static let samples: [DepartmentModel] = [
+        DepartmentModel(title: "Emergency",
+                        icon:"bolt.circle",
+                        checklists: ChecklistModel.bridgeSamples),
         DepartmentModel(title: "Bridge",
                         icon:"binoculars",
                         checklists: ChecklistModel.bridgeSamples),
