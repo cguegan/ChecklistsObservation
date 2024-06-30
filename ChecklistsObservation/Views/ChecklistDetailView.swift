@@ -74,6 +74,15 @@ struct ChecklistDetailView: View {
             .sheet(item: $selectedLine) { line in
                     ChecklineEditSheet(checkline: line)
             }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        checklist.lines.append(ChecklineModel(title: "New item", action: "Checked"))
+                    } label: {
+                        Image(systemName: "plus.circle")
+                    }
+                }
+            }
         }
     }
     

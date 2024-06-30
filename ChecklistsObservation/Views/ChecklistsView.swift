@@ -40,6 +40,15 @@ struct ChecklistsView: View {
             .sheet(item: $selectedList) { checklist in
                 ChecklistEditSheet(checklist: checklist)
             }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        checklistsStore.checklists.append(ChecklistModel(title: "New Checklist", notes: "", lines: []))
+                    } label: {
+                        Image(systemName: "plus.circle")
+                    }
+                }
+            }
         }
     }
     

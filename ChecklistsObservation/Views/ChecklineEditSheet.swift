@@ -17,7 +17,8 @@ struct ChecklineEditSheet: View {
             Form {
                 Section {
                     TextField("Title", text: $checkline.title)
-                    TextField("Notes", text: $checkline.notes)
+                    TextField("Action", text: $checkline.action)
+                    TextField("Notes", text: $checkline.notes, axis: .vertical)
                     Toggle("Is Checked", isOn: $checkline.isChecked)
                 }
             }

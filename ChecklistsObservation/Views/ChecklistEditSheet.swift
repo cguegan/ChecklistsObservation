@@ -17,7 +17,7 @@ struct ChecklistEditSheet: View {
             Form {
                 Section(header: Text("Checklist")) {
                     TextField("Checklist title", text: $checklist.title)
-                    TextField("Notes", text: $checklist.notes)
+                    TextField("Notes", text: $checklist.notes, axis: .vertical)
                 }
                 
                 Section(header: Text("Statistics")) {
