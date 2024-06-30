@@ -8,20 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
-    
-    @State var checklistsStore: ChecklistsStore = ChecklistsStore()
-    
+
     var body: some View {
-        NavigationStack {
-            List {
-                ForEach(checklistsStore.checklists) { checklist in
-                    NavigationLink(destination: ChecklistDetailView(checklist: checklist)) {
-                        Text(checklist.title)
-                    }
-                }
-                .navigationTitle("Checklists")
-            }
-        }
+        ChecklistsView()
     }
 }
 

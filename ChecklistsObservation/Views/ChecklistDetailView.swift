@@ -14,9 +14,6 @@ struct ChecklistDetailView: View {
     
     var body: some View {
         NavigationStack {
-            
-            
-            
             List {
                 if !checklist.notes.isEmpty {
                     Text(checklist.notes)
@@ -56,7 +53,7 @@ struct ChecklistDetailView: View {
                     }
                     .swipeActions(edge: .trailing) {
                         Button(role: .destructive) {
-                            print("Deleting conversation")
+                            print("Deleting checkline")
                         } label: {
                             Label("Delete", systemImage: "trash.fill")
                         }

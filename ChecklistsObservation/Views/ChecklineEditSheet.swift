@@ -10,7 +10,6 @@ import SwiftUI
 struct ChecklineEditSheet: View {
     
     @Environment(\.dismiss) var dismiss
-    
     @Bindable var checkline: ChecklineModel
     
     var body: some View {

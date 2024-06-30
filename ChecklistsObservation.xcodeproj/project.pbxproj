@@ -17,6 +17,8 @@
 		EFC9683C2C31A08900114A6C /* ChecklistDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC9683B2C31A08900114A6C /* ChecklistDetailView.swift */; };
 		EFC968432C31A76A00114A6C /* ChecklineEditSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC968422C31A76A00114A6C /* ChecklineEditSheet.swift */; };
 		EFC968462C31C35D00114A6C /* Checklists+Samples.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC968452C31C35D00114A6C /* Checklists+Samples.swift */; };
+		EFC968492C31CB1000114A6C /* ChecklistEditSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC968482C31CB1000114A6C /* ChecklistEditSheet.swift */; };
+		EFC9684B2C31CE0000114A6C /* ChecklistsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC9684A2C31CE0000114A6C /* ChecklistsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +35,8 @@
 		EFC968422C31A76A00114A6C /* ChecklineEditSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklineEditSheet.swift; sourceTree = "<group>"; };
 		EFC968452C31C35D00114A6C /* Checklists+Samples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Checklists+Samples.swift"; sourceTree = "<group>"; };
 		EFC968472C31C4FA00114A6C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		EFC968482C31CB1000114A6C /* ChecklistEditSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistEditSheet.swift; sourceTree = "<group>"; };
+		EFC9684A2C31CE0000114A6C /* ChecklistsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +111,8 @@
 			isa = PBXGroup;
 			children = (
 				EFC968282C319B6500114A6C /* ContentView.swift */,
+				EFC9684A2C31CE0000114A6C /* ChecklistsView.swift */,
+				EFC968482C31CB1000114A6C /* ChecklistEditSheet.swift */,
 				EFC9683B2C31A08900114A6C /* ChecklistDetailView.swift */,
 				EFC968422C31A76A00114A6C /* ChecklineEditSheet.swift */,
 			);
@@ -196,7 +202,9 @@
 				EFC968432C31A76A00114A6C /* ChecklineEditSheet.swift in Sources */,
 				EFC968272C319B6500114A6C /* ChecklistsObservationApp.swift in Sources */,
 				EFC968382C319C6800114A6C /* ChecklineModel.swift in Sources */,
+				EFC968492C31CB1000114A6C /* ChecklistEditSheet.swift in Sources */,
 				EFC968362C319BFB00114A6C /* ChecklistModel.swift in Sources */,
+				EFC9684B2C31CE0000114A6C /* ChecklistsView.swift in Sources */,
 				EFC9683C2C31A08900114A6C /* ChecklistDetailView.swift in Sources */,
 				EFC9683A2C319CD900114A6C /* ChecklistsStore.swift in Sources */,
 			);
