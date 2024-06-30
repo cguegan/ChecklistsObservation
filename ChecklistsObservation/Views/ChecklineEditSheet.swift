@@ -36,5 +36,5 @@ struct ChecklineEditSheet: View {
 }
 
 #Preview {
-    ChecklineEditSheet(checkline: ChecklistModel.samples.first!.lines.first!)
+    ChecklineEditSheet(checkline: ChecklistModel.bridgeSamples.first!.lines.first!)
 }

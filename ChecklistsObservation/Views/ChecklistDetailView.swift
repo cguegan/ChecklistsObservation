@@ -93,5 +93,5 @@ struct ChecklistDetailView: View {
 }
 
 #Preview {
-    ChecklistDetailView(checklist: ChecklistModel.samples[1])
+    ChecklistDetailView(checklist: ChecklistModel.bridgeSamples[1])
 }

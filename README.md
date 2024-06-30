@@ -7,11 +7,13 @@ The purpose of this app is to study Swiftui observation architecture.
 - [x] Add a new checklist
 - [x] Edit checklist
 - [x] Add a new checkline
+- [x] Add departments model
 - [ ] Separate lines by section
 - [ ] Display progression
+- [ ] Save in device container
 - [ ] Sign executed checklist
 - [ ] Save executed checklists
-- [ ] Export PDF
+- [ ] Export PDF of executed checklists
 
 ## TODO version 2.0
 

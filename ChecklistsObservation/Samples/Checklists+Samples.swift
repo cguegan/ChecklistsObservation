@@ -9,7 +9,7 @@ import Foundation
 
 extension ChecklistModel {
     
-    static let samples: [ChecklistModel] = [
+    static let bridgeSamples: [ChecklistModel] = [
         ChecklistModel(title: "Passage Planning",
                        notes: "",
                        lines: [

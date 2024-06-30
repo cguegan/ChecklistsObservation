@@ -17,7 +17,7 @@ class ChecklistsStore {
     }
     
     func fetchChecklists() {
-        self.checklists = ChecklistModel.samples
+        self.checklists = ChecklistModel.bridgeSamples
     }
     
 }

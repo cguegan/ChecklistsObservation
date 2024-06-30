@@ -58,5 +58,5 @@ struct ChecklistEditSheet: View {
 }
 
 #Preview {
-    ChecklistEditSheet(checklist: ChecklistModel.samples.first!)
+    ChecklistEditSheet(checklist: ChecklistModel.bridgeSamples.first!)
 }

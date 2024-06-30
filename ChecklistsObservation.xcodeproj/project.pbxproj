@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EF6F83052C31E12000EF9688 /* DepartmentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6F83042C31E12000EF9688 /* DepartmentModel.swift */; };
+		EF6F83072C31E3BB00EF9688 /* Departments+Samples.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6F83062C31E3BB00EF9688 /* Departments+Samples.swift */; };
 		EFC968272C319B6500114A6C /* ChecklistsObservationApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC968262C319B6500114A6C /* ChecklistsObservationApp.swift */; };
 		EFC968292C319B6500114A6C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC968282C319B6500114A6C /* ContentView.swift */; };
 		EFC9682B2C319B6600114A6C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFC9682A2C319B6600114A6C /* Assets.xcassets */; };
@@ -22,6 +24,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EF6F83042C31E12000EF9688 /* DepartmentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartmentModel.swift; sourceTree = "<group>"; };
+		EF6F83062C31E3BB00EF9688 /* Departments+Samples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Departments+Samples.swift"; sourceTree = "<group>"; };
 		EFC968232C319B6500114A6C /* ChecklistsObservation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChecklistsObservation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFC968262C319B6500114A6C /* ChecklistsObservationApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistsObservationApp.swift; sourceTree = "<group>"; };
 		EFC968282C319B6500114A6C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -93,6 +97,7 @@
 		EFC9683D2C31A16900114A6C /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				EF6F83042C31E12000EF9688 /* DepartmentModel.swift */,
 				EFC968352C319BFB00114A6C /* ChecklistModel.swift */,
 				EFC968372C319C6800114A6C /* ChecklineModel.swift */,
 			);
@@ -123,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				EFC968452C31C35D00114A6C /* Checklists+Samples.swift */,
+				EF6F83062C31E3BB00EF9688 /* Departments+Samples.swift */,
 			);
 			path = Samples;
 			sourceTree = "<group>";
@@ -202,7 +208,9 @@
 				EFC968432C31A76A00114A6C /* ChecklineEditSheet.swift in Sources */,
 				EFC968272C319B6500114A6C /* ChecklistsObservationApp.swift in Sources */,
 				EFC968382C319C6800114A6C /* ChecklineModel.swift in Sources */,
+				EF6F83052C31E12000EF9688 /* DepartmentModel.swift in Sources */,
 				EFC968492C31CB1000114A6C /* ChecklistEditSheet.swift in Sources */,
+				EF6F83072C31E3BB00EF9688 /* Departments+Samples.swift in Sources */,
 				EFC968362C319BFB00114A6C /* ChecklistModel.swift in Sources */,
 				EFC9684B2C31CE0000114A6C /* ChecklistsView.swift in Sources */,
 				EFC9683C2C31A08900114A6C /* ChecklistDetailView.swift in Sources */,
