@@ -32,6 +32,7 @@
 		EFC9683B2C31A08900114A6C /* ChecklistDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistDetailView.swift; sourceTree = "<group>"; };
 		EFC968422C31A76A00114A6C /* ChecklineEditSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklineEditSheet.swift; sourceTree = "<group>"; };
 		EFC968452C31C35D00114A6C /* Checklists+Samples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Checklists+Samples.swift"; sourceTree = "<group>"; };
+		EFC968472C31C4FA00114A6C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +49,7 @@
 		EFC9681A2C319B6500114A6C = {
 			isa = PBXGroup;
 			children = (
+				EFC968472C31C4FA00114A6C /* README.md */,
 				EFC968252C319B6500114A6C /* ChecklistsObservation */,
 				EFC968242C319B6500114A6C /* Products */,
 			);

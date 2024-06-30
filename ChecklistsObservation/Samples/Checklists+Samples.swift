@@ -53,7 +53,7 @@ extension ChecklistModel {
                         ChecklineModel(title: "All Crew",               action: "Noticed")
                    ]),
         ChecklistModel(title: "Departure",
-                       notes: "To be executed on each departure, not more than one hour before.",
+                       notes: "To be executed before each departure, not more than one hour before.",
                        lines: [
                         ChecklineModel(title: "Crew",                   action: "Onboard"),
                         ChecklineModel(title: "Guests",                 action: "Onboard"),
