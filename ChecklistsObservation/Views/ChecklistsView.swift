@@ -35,6 +35,7 @@ struct ChecklistsView: View {
                         .tint(.blue)
                     }
                 }
+                .onMove(perform: move)
             }
             .navigationTitle("Checklists")
             .sheet(item: $selectedList) { checklist in
