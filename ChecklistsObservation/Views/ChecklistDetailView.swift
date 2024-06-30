@@ -23,7 +23,7 @@ struct ChecklistDetailView: View {
                 ForEach (checklist.lines) { line in
                     checklineRow(line)
                     .swipeActions(edge: .trailing) {
-                        deleteSwipeButton
+                        deleteSwipeButton(line)
                     }
                     .swipeActions(edge: .leading) {
                         editSwipeButton(line)
@@ -98,9 +98,9 @@ extension ChecklistDetailView {
     
     /// Delete Swipe Button
     ///
-    private var deleteSwipeButton: some View {
+    private func deleteSwipeButton(_ line: ChecklineModel) -> some View {
         Button(role: .destructive) {
-            print("Deleting checkline")
+            delete(line)
         } label: {
             Label("Delete", systemImage: "trash.fill")
         }
@@ -137,6 +137,11 @@ extension ChecklistDetailView {
                 Image(systemName: "plus.circle")
             }
         }
+        
+        ToolbarItem(placement: .navigationBarTrailing) {
+            CircularProgressView(progress: checklist.completionState, lineWidth: 1.8)
+                .frame(width: 20, height: 20)
+        }
     }
 }
 
@@ -148,6 +153,13 @@ extension ChecklistDetailView {
 
     func move(from: IndexSet, to: Int) {
         checklist.lines.move(fromOffsets: from, toOffset: to)
+    }
+    
+    func delete(_ line: ChecklineModel) {
+        if let index = checklist.lines.firstIndex( where: { $0.id == line.id } ) {
+            print("Deleting checkline \(checklist.lines[index].title)")
+            checklist.lines.remove(at: index)
+        }
     }
     
 }
