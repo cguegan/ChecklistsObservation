@@ -4,10 +4,10 @@ The purpose of this app is to study Swiftui observation architecture.
 
 ## TODO MVP 1.0
 
-[] Edit checklist
-[] Separate lines by section
-[] Display progression
-[] Sign executed checklist
+[ ] Edit checklist
+[_] Separate lines by section
+[x] Display progression
+[_] Sign executed checklist
 [] Save executed checklists
 [] Export PDF
 
