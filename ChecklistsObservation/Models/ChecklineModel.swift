@@ -26,6 +26,24 @@ class ChecklineModel: Identifiable {
         self.type = .checkline
     }
     
+    init(title: String, type: ChecklineType) {
+        self.id = UUID().uuidString
+        self.title = title
+        self.action = ""
+        self.notes = ""
+        self.isChecked = false
+        self.type = type
+    }
+    
+    init(title: String, notes: String) {
+        self.id = UUID().uuidString
+        self.title = title
+        self.action = ""
+        self.notes = notes
+        self.isChecked = false
+        self.type = ChecklineType.comment
+    }
+    
 }
 
 // MARK: - Computed properties
@@ -50,7 +68,7 @@ enum ChecklineType: Codable, CaseIterable, Identifiable {
     
     var id: Self { self }
     
-    var description: String {
+    var title: String {
         switch self {
         case .sectionTitle:
             return "Section Title"

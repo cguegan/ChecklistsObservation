@@ -21,9 +21,19 @@ struct ChecklineEditSheet: View {
             Form {
                 Section {
                     TextField("Title", text: $checkline.title)
-                    TextField("Action", text: $checkline.action)
-                    TextField("Notes", text: $checkline.notes, axis: .vertical)
-                    Toggle("Is Checked", isOn: $checkline.isChecked)
+                    Picker("Type", selection: $checkline.type) {
+                        ForEach(ChecklineType.allCases) { type in
+                            Text(type.title)
+                        }
+                    }
+                    if checkline.type == .checkline {
+                        TextField("Action", text: $checkline.action)
+                        TextField("Notes", text: $checkline.notes, axis: .vertical)
+                        Toggle("Is Checked", isOn: $checkline.isChecked)
+                    } else if checkline.type == .comment {
+                        TextField("Notes", text: $checkline.notes, axis: .vertical)
+                    }
+                    
                 }
             }
             .navigationTitle("Edit Checkline")

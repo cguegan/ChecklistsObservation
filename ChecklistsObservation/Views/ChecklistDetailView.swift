@@ -61,7 +61,21 @@ extension ChecklistDetailView {
     
     /// Checkline Row
     ///
+    @ViewBuilder
     private func checklineRow(_ line: ChecklineModel) -> some View {
+        switch line.type {
+        case .checkline:
+            AnyView(checkableLine(line))
+        case .sectionTitle:
+            AnyView(sectionTitleRow(line))
+        case .comment:
+            AnyView(commentRow(line))
+        }
+    }
+    
+    /// Checkable line item
+    ///
+    private func checkableLine(_ line: ChecklineModel) -> some View {
         HStack (alignment: .top) {
             
             // Icon
@@ -93,16 +107,64 @@ extension ChecklistDetailView {
         .contentShape(Rectangle())
         .onTapGesture {
             line.isChecked.toggle()
-        }
+        }            
         .swipeActions(edge: .trailing) {
             deleteSwipeButton(line)
-            
         }
         .swipeActions(edge: .leading) {
             editSwipeButton(line)
         }
     }
     
+    private func sectionTitleRow(_ line: ChecklineModel)  -> some View {
+        HStack {
+            // Icon
+            Image(systemName: "line.3.horizontal")
+                .font(.title3)
+            
+            // Title
+            Text(line.title.uppercased())
+                .foregroundColor(line.isChecked ? .secondary : .primary)
+                .bold()
+                .font(.caption)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            
+        }
+        .listRowBackground(Color.gray.opacity(0.1))
+        .listRowSeparator(.hidden)
+        .swipeActions(edge: .trailing) {
+            deleteSwipeButton(line)
+        }
+        .swipeActions(edge: .leading) {
+            editSwipeButton(line)
+        }
+    }
+    
+    private func commentRow(_ line: ChecklineModel)  -> some View {
+        HStack(alignment: .top) {
+            // Icon
+            Image(systemName: "info.circle")
+                .font(.title3)
+                .foregroundStyle(.secondary.opacity(0.5))
+            
+            VStack {
+                // Title
+                Text("**\(line.title)**: *\(line.notes)*")
+                    .foregroundColor(.secondary)
+                    .font(.caption)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                
+            }
+            
+        }
+            .swipeActions(edge: .trailing) {
+                deleteSwipeButton(line)
+            }
+            .swipeActions(edge: .leading) {
+                editSwipeButton(line)
+            }
+    }
+
     /// Delete Swipe Button
     /// Display a trash button whenever the user swap left
     ///
