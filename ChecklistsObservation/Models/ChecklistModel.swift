@@ -9,7 +9,7 @@ import Foundation
 import Observation
 
 @Observable
-class ChecklistModel: Identifiable {
+class ChecklistModel: Identifiable, Codable {
     var id: String = ""
     var title: String = ""
     var notes: String = ""
@@ -22,6 +22,23 @@ class ChecklistModel: Identifiable {
         self.lines = lines
     }
     
+    enum CodingKeys: String, CodingKey {
+        case _id = "id"
+        case _title = "title"
+        case _notes = "notes"
+        case _lines = "lines"
+    }
+    
+    func setOrder() {
+        var order = 1
+        for line in lines {
+            if line.type == .checkline {
+                line.ordering = order
+                order += 1
+            }
+        }
+    }
+    
 }
 
 // MARK: - Computed properties
@@ -30,12 +47,14 @@ class ChecklistModel: Identifiable {
 extension ChecklistModel {
     
     // Return the number of currently checked checklines
+    //
     var itemChecked: Int {
         let checkedCount = lines.reduce(0) { $0 + $1.counting }
         return checkedCount
     }
     
     // Return the number of checkline
+    //
     var totalCheckinesNbr: Int {
         let linesCount = lines.reduce(0) { checklinesCount, line in
             if line.type == .checkline {
@@ -48,6 +67,7 @@ extension ChecklistModel {
     }
     
     // Return the completion state as a double value from 0.0 to 1.0
+    //
     var completionState: Double {
         if itemChecked > 0 {
             return Double(itemChecked) / Double(totalCheckinesNbr)

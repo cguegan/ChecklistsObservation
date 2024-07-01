@@ -12,6 +12,7 @@ struct ChecklistDetailView: View {
     @State private var selectedLine: ChecklineModel?
     @State private var deletableLine: ChecklineModel?
     @State private var confirmDelete: Bool = false
+    @State private var signChecklist: Bool = false
     
     var checklist: ChecklistModel
     
@@ -22,6 +23,7 @@ struct ChecklistDetailView: View {
         NavigationStack {
             List {
                 notesView
+                Text("Completion state: \(checklist.completionState)")
                 ForEach (checklist.lines) { line in
                     checklineRow(line)
                 }
@@ -30,6 +32,9 @@ struct ChecklistDetailView: View {
             .navigationTitle("\(checklist.title)")
             .sheet(item: $selectedLine) { line in
                 ChecklineEditSheet(checkline: line)
+            }
+            .fullScreenCover(isPresented: $signChecklist) {
+                SignChecklistSheet(checklist: checklist)
             }
             .toolbar {
                 trailingToolbar
@@ -41,6 +46,7 @@ struct ChecklistDetailView: View {
         }
     }
 }
+
 
 // MARK: - Extracted Views
 // ———————————————————————
@@ -222,15 +228,25 @@ extension ChecklistDetailView {
                 Image(systemName: "plus.circle")
             }
         }
-        
         ToolbarItem(placement: .navigationBarTrailing) {
-            CircularProgressView(progress: checklist.completionState, lineWidth: 1.8)
-                .frame(width: 20, height: 20)
-                .onTapGesture {
-                    withAnimation {
-                        self.reset()
+            if checklist.completionState < 1.0 {
+                CircularProgressView(progress: checklist.completionState, lineWidth: 1.8)
+                    .frame(width: 20, height: 20)
+                    .onTapGesture {
+                        withAnimation {
+                            self.reset()
+                        }
                     }
+                    .padding(.leading, 17)
+            } else {
+                Button {
+                    signChecklist = true
+                } label: {
+                    Label("Check done", systemImage: "checkmark.circle")
                 }
+                .tint(.green)
+                .padding(.leading, 0)
+            }
         }
     }
 }
@@ -269,5 +285,5 @@ extension ChecklistDetailView {
 // ———————————————
 
 #Preview {
-    ChecklistDetailView(checklist: ChecklistModel.bridgeSamples[1])
+    ChecklistDetailView(checklist: ChecklistModel.emergencySamples[0])
 }

@@ -16,7 +16,7 @@ The purpose of this app is to study Swiftui observation architecture.
 - [ ] Save in device container
 - [ ] Sign executed checklist
 - [ ] Save executed checklists
-- [ ] Export PDF of executed checklists
+- [x] Export PDF of executed checklists
 
 ## TODO version 2.0
 

@@ -9,13 +9,14 @@ import Foundation
 import Observation
 
 @Observable
-class ChecklineModel: Identifiable {
+class ChecklineModel: Identifiable, Codable {
     var id: String
     var title: String
     var action: String
     var notes: String
     var isChecked: Bool
     var type: ChecklineType
+    var ordering: Int = 0
     
     init(title: String, action: String, notes: String = "") {
         self.id = UUID().uuidString
@@ -42,6 +43,16 @@ class ChecklineModel: Identifiable {
         self.notes = notes
         self.isChecked = false
         self.type = ChecklineType.comment
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case _id = "id"
+        case _title = "title"
+        case _action = "action"
+        case _notes = "notes"
+        case _isChecked = "isChecked"
+        case _type = "type"
+        case _ordering = "ordering"
     }
     
 }
