@@ -8,13 +8,23 @@
 import SwiftUI
 
 struct ContentView: View {
-
+    
+    @State var checklistsStore = ChecklistsStore()
     
     // MARK: - Main body
     // —————————————————
     
     var body: some View {
-        ChecklistsView()
+        TabView {
+            ForEach(DepartmentModel.samples) { department in
+                ChecklistsView(department: department)
+                    .environment(checklistsStore)
+                    .tabItem {
+                        Label(department.title, systemImage: department.icon)
+                    }
+            }
+            
+        }
     }
 }
 

@@ -10,9 +10,9 @@ import Observation
 
 @Observable
 class DepartmentModel: Identifiable {
-    var id: String
-    var title: String
-    var icon: String
+    var id: String = ""
+    var title: String = ""
+    var icon: String = ""
     var checklists: [ChecklistModel]
     
     init(title: String, icon: String, checklists: [ChecklistModel]) {

@@ -28,6 +28,9 @@ class ChecklineModel: Identifiable {
     
 }
 
+// MARK: - Computed properties
+// ———————————————————————————
+
 extension ChecklineModel {
     
     var counting: Int {
@@ -35,6 +38,10 @@ extension ChecklineModel {
     }
     
 }
+
+// MARK: - Checkline Enum
+// ——————————————————————
+
 
 enum ChecklineType: Codable, CaseIterable, Identifiable {
     case sectionTitle

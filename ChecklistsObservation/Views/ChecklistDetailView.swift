@@ -141,6 +141,11 @@ extension ChecklistDetailView {
         ToolbarItem(placement: .navigationBarTrailing) {
             CircularProgressView(progress: checklist.completionState, lineWidth: 1.8)
                 .frame(width: 20, height: 20)
+                .onTapGesture {
+                    withAnimation {
+                        self.reset()
+                    }
+                }
         }
     }
 }
@@ -151,6 +156,12 @@ extension ChecklistDetailView {
 
 extension ChecklistDetailView {
 
+    func reset() {
+        for line in checklist.lines {
+            line.isChecked = false
+        }
+    }
+    
     func move(from: IndexSet, to: Int) {
         checklist.lines.move(fromOffsets: from, toOffset: to)
     }

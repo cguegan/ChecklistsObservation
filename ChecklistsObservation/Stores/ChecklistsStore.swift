@@ -10,14 +10,11 @@ import Observation
 
 @Observable
 class ChecklistsStore {
+    
     var checklists: [ChecklistModel] = []
     
-    init() {
-        self.fetchChecklists()
-    }
-    
-    func fetchChecklists() {
-        self.checklists = ChecklistModel.bridgeSamples
+    func fetchChecklists(for department: DepartmentModel) {
+        self.checklists = department.checklists
     }
     
 }

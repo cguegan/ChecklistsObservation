@@ -10,9 +10,9 @@ import Observation
 
 @Observable
 class ChecklistModel: Identifiable {
-    var id: String
-    var title: String
-    var notes: String
+    var id: String = ""
+    var title: String = ""
+    var notes: String = ""
     var lines: [ChecklineModel]
     
     init(title: String, notes: String, lines: [ChecklineModel] = []) {
@@ -23,6 +23,9 @@ class ChecklistModel: Identifiable {
     }
     
 }
+
+// MARK: - Computed properties
+// ———————————————————————————
 
 extension ChecklistModel {
     

@@ -9,8 +9,10 @@ import SwiftUI
 
 struct ChecklistsView: View {
     
-    @State var checklistsStore: ChecklistsStore = ChecklistsStore()
+    
+    @Environment(ChecklistsStore.self) private var checklistsStore
     @State var selectedList: ChecklistModel?
+    var department: DepartmentModel
     
     
     // MARK: - Main body
@@ -30,7 +32,7 @@ struct ChecklistsView: View {
                 }
                 .onMove(perform: move)
             }
-            .navigationTitle("Checklists")
+            .navigationTitle("\(department.title)")
             .sheet(item: $selectedList) { checklist in
                 ChecklistEditSheet(checklist: checklist)
             }
@@ -38,7 +40,11 @@ struct ChecklistsView: View {
                 trailingToolbar
             }
         }
+        .onAppear {
+            checklistsStore.fetchChecklists(for: department)
+        }
     }
+    
 }
 
 // MARK: - Extracted Views
@@ -118,5 +124,6 @@ extension ChecklistsView {
 // ———————————————
 
 #Preview {
-    ChecklistsView()
+    ChecklistsView(department: DepartmentModel.samples[Int.random(in: 0..<4)])
+        .environment(ChecklistsStore())
 }

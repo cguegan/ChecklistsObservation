@@ -9,6 +9,8 @@ The purpose of this app is to study Swiftui observation architecture.
 - [x] Add a new checkline
 - [x] Add departments model
 - [ ] Separate lines by section
+- [ ] Alert when delete list
+- [ ] Alert when delete list item
 - [ ] Display progression
 - [ ] Save in device container
 - [ ] Sign executed checklist
