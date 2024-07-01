@@ -9,9 +9,11 @@ import SwiftUI
 
 struct ChecklistDetailView: View {
     
-    var checklist: ChecklistModel
-    @State var selectedLine: ChecklineModel?
+    @State private var selectedLine: ChecklineModel?
+    @State private var deletableLine: ChecklineModel?
+    @State private var confirmDelete: Bool = false
     
+    var checklist: ChecklistModel
     
     // MARK: - Main body
     // —————————————————
@@ -22,12 +24,6 @@ struct ChecklistDetailView: View {
                 notesView
                 ForEach (checklist.lines) { line in
                     checklineRow(line)
-                    .swipeActions(edge: .trailing) {
-                        deleteSwipeButton(line)
-                    }
-                    .swipeActions(edge: .leading) {
-                        editSwipeButton(line)
-                    }
                 }
                 .onMove(perform: move)
             }
@@ -38,6 +34,10 @@ struct ChecklistDetailView: View {
             .toolbar {
                 trailingToolbar
             }
+            .confirmationDialog("Confirmation", isPresented: $confirmDelete) {
+                confirmDeleteButton
+            }
+            
         }
     }
 }
@@ -94,19 +94,30 @@ extension ChecklistDetailView {
         .onTapGesture {
             line.isChecked.toggle()
         }
-    }
-    
-    /// Delete Swipe Button
-    ///
-    private func deleteSwipeButton(_ line: ChecklineModel) -> some View {
-        Button(role: .destructive) {
-            delete(line)
-        } label: {
-            Label("Delete", systemImage: "trash.fill")
+        .swipeActions(edge: .trailing) {
+            deleteSwipeButton(line)
+            
+        }
+        .swipeActions(edge: .leading) {
+            editSwipeButton(line)
         }
     }
     
+    /// Delete Swipe Button
+    /// Display a trash button whenever the user swap left
+    ///
+    private func deleteSwipeButton(_ line: ChecklineModel) -> some View {
+        Button() {
+            deletableLine = line
+            confirmDelete = true
+        } label: {
+            Label("Delete", systemImage: "trash.fill")
+        }
+        .tint(.red)
+    }
+    
     /// Edit Swipe Button
+    ///
     private func editSwipeButton(_ line: ChecklineModel) -> some View {
         Button() {
             selectedLine = line
@@ -114,6 +125,18 @@ extension ChecklistDetailView {
             Label("Edit", systemImage: "rectangle.and.pencil.and.ellipsis")
         }
         .tint(.blue)
+    }
+    
+    /// Confirm Delete Button
+    ///
+    private var confirmDeleteButton: some View {
+        Button("Confirm Delete", role: .destructive) {
+            if let line = deletableLine {
+                withAnimation {
+                    delete(line)
+                }
+            }
+        }
     }
     
 }
@@ -155,7 +178,7 @@ extension ChecklistDetailView {
 // ———————————————
 
 extension ChecklistDetailView {
-
+    
     func reset() {
         for line in checklist.lines {
             line.isChecked = false
@@ -167,9 +190,13 @@ extension ChecklistDetailView {
     }
     
     func delete(_ line: ChecklineModel) {
+        print("DEBUG: Deleting checkline \(line.title)")
         if let index = checklist.lines.firstIndex( where: { $0.id == line.id } ) {
-            print("Deleting checkline \(checklist.lines[index].title)")
             checklist.lines.remove(at: index)
+            self.deletableLine = nil
+            print("DEBUG: Deleting done")
+        }  else {
+            print("ERROR: Could not find \(line.title) in checklist \(checklist.title) while deleting the line")
         }
     }
     
