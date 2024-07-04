@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ChecklistDetailView: View {
     
+    @Environment(ChecklistsStore.self) private var checklistsStore
+    
     @State private var selectedLine: ChecklineModel?
     @State private var deletableLine: ChecklineModel?
     @State private var confirmDelete: Bool = false
@@ -23,7 +25,7 @@ struct ChecklistDetailView: View {
         NavigationStack {
             List {
                 notesView
-                Text("Completion state: \(checklist.completionState)")
+                displayDebugingData
                 ForEach (checklist.lines) { line in
                     checklineRow(line)
                 }
@@ -65,6 +67,18 @@ extension ChecklistDetailView {
         }
     }
     
+    /// Display debuging data
+    ///
+    private var displayDebugingData: some View {
+        Group {
+            if checklistsStore.debuging {
+                Text("Completion state: \(checklist.completionState)")
+            } else {
+                EmptyView()
+            }
+        }
+    }
+    
     /// Checkline Row
     ///
     @ViewBuilder
@@ -82,8 +96,8 @@ extension ChecklistDetailView {
     /// Checkable line item
     ///
     private func checkableLine(_ line: ChecklineModel) -> some View {
+        
         HStack (alignment: .top) {
-            
             // Icon
             Image(systemName: line.isChecked ? "checkmark.square" : "square")
                 .font(.title3)

@@ -12,14 +12,15 @@ The purpose of this app is to study Swiftui observation architecture.
 - [x] Separate lines by section
 - [x] Alert when delete a list
 - [x] Alert when delete a list item
+- [x] Departments of checklists
 - [x] Display progression
+- [x] Sign executed checklist
+- [x] Generate PDF
 - [ ] Save in device container
-- [ ] Sign executed checklist
+- [ ] Export PDF of executed checklists
 - [ ] Save executed checklists
-- [x] Export PDF of executed checklists
 
 ## TODO version 2.0
 
 - [ ] Cloud/Firebase storage
 - [ ] Share checklists
-- [ ] Category of checklists

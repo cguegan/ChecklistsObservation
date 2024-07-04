@@ -12,6 +12,7 @@ import Observation
 class ChecklistsStore {
     
     var checklists: [ChecklistModel] = []
+    var debuging: Bool = false
     
     func fetchChecklists(for department: DepartmentModel) {
         self.checklists = department.checklists
