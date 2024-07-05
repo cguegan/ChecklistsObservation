@@ -6,17 +6,22 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ChecklistDetailView: View {
     
     @Environment(ChecklistsStore.self) private var checklistsStore
+    @Environment(\.modelContext) var modelContext
     
     @State private var selectedLine: ChecklineModel?
     @State private var deletableLine: ChecklineModel?
     @State private var confirmDelete: Bool = false
     @State private var signChecklist: Bool = false
     
-    var checklist: ChecklistModel
+    let checklist: ChecklistModel
+    var checklines: [ChecklineModel] {
+        return checklist.lines.sorted { $0.order < $1.order }
+    }
     
     // MARK: - Main body
     // —————————————————
@@ -26,10 +31,10 @@ struct ChecklistDetailView: View {
             List {
                 notesView
                 displayDebugingData
-                ForEach (checklist.lines) { line in
+                ForEach (checklines) { line in
                     checklineRow(line)
                 }
-                .onMove(perform: move)
+                .onMove(perform: altMove)
             }
             .navigationTitle("\(checklist.title)")
             .sheet(item: $selectedLine) { line in
@@ -235,6 +240,7 @@ extension ChecklistDetailView {
                 checklist.lines.append(
                     ChecklineModel(
                         title: "New item",
+                        order: checklist.lines.count,
                         action: "Checked"
                     )
                 )
@@ -281,6 +287,18 @@ extension ChecklistDetailView {
         checklist.lines.move(fromOffsets: from, toOffset: to)
     }
     
+    func altMove(from: IndexSet, to: Int) {
+        print("DEBUG: Moving checkline \(from.first!)")
+
+        var s = checklist.lines.sorted(by: { $0.order < $1.order })
+        s.move(fromOffsets: from, toOffset: to)
+        for (index, item) in s.enumerated() {
+            item.order = index
+        }
+        try? self.modelContext.save()
+        
+    }
+    
     func delete(_ line: ChecklineModel) {
         print("DEBUG: Deleting checkline \(line.title)")
         if let index = checklist.lines.firstIndex( where: { $0.id == line.id } ) {
@@ -298,6 +316,17 @@ extension ChecklistDetailView {
 // MARK: - Preview
 // ———————————————
 
-#Preview {
-    ChecklistDetailView(checklist: ChecklistModel.emergencySamples[0])
+struct ChecklistDetailViewContainer: View {
+    
+    @Query(sort: \DepartmentModel.order) private var departments: [DepartmentModel]
+    
+    var body: some View {
+        ChecklistDetailView(checklist: departments[1].checklists[1])
+    }
+}
+
+#Preview { @MainActor in
+    ChecklistDetailViewContainer()
+        .modelContainer(previewContainer)
+        .environment(ChecklistsStore())
 }

@@ -13,23 +13,28 @@ extension DepartmentModel {
         // Emergency
         DepartmentModel(title: "Emergency",
                         icon:"bolt.circle",
+                        order: 0,
                         checklists: ChecklistModel.emergencySamples),
         // Bridge
         DepartmentModel(title: "Bridge",
                         icon:"binoculars",
+                        order: 1,
                         checklists: ChecklistModel.bridgeSamples),
         // Machinery
         DepartmentModel(title: "Machinery",
                         icon:"wrench.adjustable",
+                        order: 2,
                         checklists: ChecklistModel.machinerySamples),
         // Deck
-        DepartmentModel(title: "Deck",
-                        icon: "lifepreserver",
-                        checklists: ChecklistModel.deckSamples),
+//        DepartmentModel(title: "Deck",
+//                        icon: "lifepreserver",
+//                        order: 3,
+//                        checklists: ChecklistModel.deckSamples),
         // Interior
-        DepartmentModel(title: "Interior",
-                        icon:"bed.double",
-                        checklists: ChecklistModel.interiorSamples)
+//        DepartmentModel(title: "Interior",
+//                        icon:"bed.double", 
+//                        order: 4,
+//                        checklists: ChecklistModel.interiorSamples)
         ]
         
     

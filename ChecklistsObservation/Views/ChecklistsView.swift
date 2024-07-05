@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ChecklistsView: View {
     
@@ -15,7 +16,10 @@ struct ChecklistsView: View {
     @State var deletableList: ChecklistModel?
     @State var confirmDelete: Bool = false
     
-    var department: DepartmentModel
+    let department: DepartmentModel
+    var checklists: [ChecklistModel] {
+        return department.checklists.sorted { $0.order < $1.order }
+    }
     
     // MARK: - Main body
     // —————————————————
@@ -23,7 +27,7 @@ struct ChecklistsView: View {
     var body: some View {
         NavigationStack {
             List {
-                ForEach(checklistsStore.checklists) { checklist in
+                ForEach(checklists) { checklist in
                     checklistRow(checklist)
                 }
                 .onMove(perform: move)
@@ -115,6 +119,7 @@ extension ChecklistsView {
                     ChecklistModel(
                         title: "New Checklist",
                         notes: "",
+                        order: department.checklists.count,
                         lines: []
                     )
                 )
@@ -152,7 +157,17 @@ extension ChecklistsView {
 // MARK: - Preview
 // ———————————————
 
-#Preview {
-    ChecklistsView(department: DepartmentModel.samples[Int.random(in: 0..<4)])
+struct ChecklistsViewContainer: View {
+    
+    @Query(sort: \DepartmentModel.order) private var departments: [DepartmentModel]
+    
+    var body: some View {
+        ChecklistsView(department: departments[1])
+    }
+}
+
+#Preview { @MainActor in
+    ChecklistsViewContainer()
+        .modelContainer(previewContainer)
         .environment(ChecklistsStore())
 }

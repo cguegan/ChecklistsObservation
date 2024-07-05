@@ -154,7 +154,7 @@ extension ChecklistPDFView {
                 
             } else if line.type == .checkline {
                 HStack(spacing: 0) {
-                    Text(String(format: "%02d", line.ordering))
+                    Text(String(format: "%02d", line.order))
                         .font(.system(size: 9))
                         .frame(maxWidth: 15, alignment: .leading)
                         .padding(.leading)

@@ -15,6 +15,8 @@
 		EF2B59E62C32E589007A7D85 /* SignChecklistSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2B59E52C32E589007A7D85 /* SignChecklistSheet.swift */; };
 		EF2B59E82C32E5CC007A7D85 /* ExecListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2B59E72C32E5CC007A7D85 /* ExecListModel.swift */; };
 		EF6A925A2C372930001109D3 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6A92592C372930001109D3 /* Color+Extensions.swift */; };
+		EF6A925C2C3730D4001109D3 /* PreviewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6A925B2C3730D4001109D3 /* PreviewContainer.swift */; };
+		EF6A925E2C3743C3001109D3 /* AppContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6A925D2C3743C3001109D3 /* AppContainer.swift */; };
 		EF6F83052C31E12000EF9688 /* DepartmentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6F83042C31E12000EF9688 /* DepartmentModel.swift */; };
 		EF6F83072C31E3BB00EF9688 /* Departments+Samples.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6F83062C31E3BB00EF9688 /* Departments+Samples.swift */; };
 		EF6F83092C32043000EF9688 /* CircularProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6F83082C32043000EF9688 /* CircularProgressBarView.swift */; };
@@ -41,6 +43,8 @@
 		EF2B59E52C32E589007A7D85 /* SignChecklistSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignChecklistSheet.swift; sourceTree = "<group>"; };
 		EF2B59E72C32E5CC007A7D85 /* ExecListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecListModel.swift; sourceTree = "<group>"; };
 		EF6A92592C372930001109D3 /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
+		EF6A925B2C3730D4001109D3 /* PreviewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewContainer.swift; sourceTree = "<group>"; };
+		EF6A925D2C3743C3001109D3 /* AppContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContainer.swift; sourceTree = "<group>"; };
 		EF6F83042C31E12000EF9688 /* DepartmentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartmentModel.swift; sourceTree = "<group>"; };
 		EF6F83062C31E3BB00EF9688 /* Departments+Samples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Departments+Samples.swift"; sourceTree = "<group>"; };
 		EF6F83082C32043000EF9688 /* CircularProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressBarView.swift; sourceTree = "<group>"; };
@@ -116,8 +120,8 @@
 				EF6F830A2C32043B00EF9688 /* Componants */,
 				EFC9683E2C31A17300114A6C /* Stores */,
 				EFC9683D2C31A16900114A6C /* Models */,
-				EF6A92582C3728EE001109D3 /* Extensions */,
 				EFC968442C31C33D00114A6C /* Samples */,
+				EF6A92582C3728EE001109D3 /* Extensions */,
 				EFC9682A2C319B6600114A6C /* Assets.xcassets */,
 				EFC9682C2C319B6600114A6C /* ChecklistsObservation.entitlements */,
 				EFC9682D2C319B6600114A6C /* Preview Content */,
@@ -129,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				EFC9682E2C319B6600114A6C /* Preview Assets.xcassets */,
+				EF6A925B2C3730D4001109D3 /* PreviewContainer.swift */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -147,6 +152,7 @@
 		EFC9683E2C31A17300114A6C /* Stores */ = {
 			isa = PBXGroup;
 			children = (
+				EF6A925D2C3743C3001109D3 /* AppContainer.swift */,
 				EFC968392C319CD900114A6C /* ChecklistsStore.swift */,
 				EF0C09732C3326D7009CCFC3 /* LocationManager.swift */,
 			);
@@ -170,8 +176,8 @@
 		EFC968442C31C33D00114A6C /* Samples */ = {
 			isa = PBXGroup;
 			children = (
-				EFC968452C31C35D00114A6C /* Checklists+Samples.swift */,
 				EF6F83062C31E3BB00EF9688 /* Departments+Samples.swift */,
+				EFC968452C31C35D00114A6C /* Checklists+Samples.swift */,
 			);
 			path = Samples;
 			sourceTree = "<group>";
@@ -246,8 +252,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF6A925C2C3730D4001109D3 /* PreviewContainer.swift in Sources */,
 				EFC968462C31C35D00114A6C /* Checklists+Samples.swift in Sources */,
 				EFC968292C319B6500114A6C /* ContentView.swift in Sources */,
+				EF6A925E2C3743C3001109D3 /* AppContainer.swift in Sources */,
 				EF0C09722C330CE5009CCFC3 /* Sign.swift in Sources */,
 				EFC968432C31A76A00114A6C /* ChecklineEditSheet.swift in Sources */,
 				EF0C09762C3331B6009CCFC3 /* ChecklistPDFView.swift in Sources */,

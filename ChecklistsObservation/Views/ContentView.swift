@@ -6,17 +6,20 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ContentView: View {
     
     @State var checklistsStore = ChecklistsStore()
+    @Query(sort: \DepartmentModel.order) private var departments: [DepartmentModel]
+    
     
     // MARK: - Main body
     // —————————————————
     
     var body: some View {
         TabView {
-            ForEach(DepartmentModel.samples) { department in
+            ForEach(departments) { department in
                 ChecklistsView(department: department)
                     .environment(checklistsStore)
                     .tabItem {
@@ -32,6 +35,7 @@ struct ContentView: View {
 // MARK: - Preview
 // ———————————————
 
-#Preview {
+#Preview { @MainActor in
     ContentView()
+        .modelContainer(previewContainer)
 }
