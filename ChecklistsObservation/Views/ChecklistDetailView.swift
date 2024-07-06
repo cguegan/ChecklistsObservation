@@ -58,6 +58,7 @@ struct ChecklistDetailView: View {
             
         }
     }
+    
 }
 
 
