@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 @main
-struct ChecklistsObservationApp: App {
+struct YachtChecklists: App {
     
     // print out the location of the sql database
     init() {
