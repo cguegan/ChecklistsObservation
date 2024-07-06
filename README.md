@@ -18,7 +18,9 @@ The purpose of this app is to study Swiftui observation architecture.
 - [x] Generate PDF
 - [x] Save in device container using swiftdata
 - [ ] Swap toolbar on checklist detail view
+- [ ] Disable editing when user starts to execute
 - [ ] Export PDF of executed checklists
+- [ ] Export PDF of blank checklists
 - [ ] Save executed checklists
 
 ## TODO version 2.0

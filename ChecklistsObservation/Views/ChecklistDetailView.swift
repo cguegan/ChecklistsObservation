@@ -23,6 +23,12 @@ struct ChecklistDetailView: View {
         return checklist.lines.sorted { $0.order < $1.order }
     }
     
+    /// return the state of the checks in order to disable editing when the user start to execute checklist
+    var isChecking: Bool {
+        checklist.completionState > 0
+    }
+    
+    
     // MARK: - Main body
     // —————————————————
     
@@ -34,7 +40,7 @@ struct ChecklistDetailView: View {
                 ForEach (checklines) { line in
                     checklineRow(line)
                 }
-                .onMove(perform: altMove)
+                .onMove(perform: isChecking ? nil : altMove)
             }
             .navigationTitle("\(checklist.title)")
             .sheet(item: $selectedLine) { line in
@@ -85,6 +91,7 @@ extension ChecklistDetailView {
     }
     
     /// Checkline Row
+    /// Depanding of the type of row, switch to display the correct type of cell
     ///
     @ViewBuilder
     private func checklineRow(_ line: ChecklineModel) -> some View {
@@ -134,13 +141,15 @@ extension ChecklistDetailView {
             line.isChecked.toggle()
         }            
         .swipeActions(edge: .trailing) {
-            deleteSwipeButton(line)
+            !isChecking ? deleteSwipeButton(line) : nil
         }
         .swipeActions(edge: .leading) {
-            editSwipeButton(line)
+            !isChecking ? editSwipeButton(line) : nil
         }
     }
     
+    /// Section title row
+    ///
     private func sectionTitleRow(_ line: ChecklineModel)  -> some View {
         HStack {
             // Icon
@@ -158,13 +167,15 @@ extension ChecklistDetailView {
         .listRowBackground(Color.gray.opacity(0.1))
         .listRowSeparator(.hidden)
         .swipeActions(edge: .trailing) {
-            deleteSwipeButton(line)
+            !isChecking ? deleteSwipeButton(line) : nil
         }
         .swipeActions(edge: .leading) {
-            editSwipeButton(line)
+            !isChecking ? editSwipeButton(line) : nil
         }
     }
     
+    /// Comment row
+    ///
     private func commentRow(_ line: ChecklineModel)  -> some View {
         HStack(alignment: .top) {
             // Icon
@@ -176,17 +187,17 @@ extension ChecklistDetailView {
                 // Title
                 Text("**\(line.title)**: *\(line.notes)*")
                     .foregroundColor(.secondary)
-                    .font(.caption)
+                    .font(.subheadline)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
             }
             
         }
             .swipeActions(edge: .trailing) {
-                deleteSwipeButton(line)
+                !isChecking ? deleteSwipeButton(line): nil
             }
             .swipeActions(edge: .leading) {
-                editSwipeButton(line)
+                !isChecking ? editSwipeButton(line) : nil
             }
     }
 
@@ -204,6 +215,7 @@ extension ChecklistDetailView {
     }
     
     /// Edit Swipe Button
+    /// Display editing icon whenever the user swipe right
     ///
     private func editSwipeButton(_ line: ChecklineModel) -> some View {
         Button() {
@@ -233,42 +245,53 @@ extension ChecklistDetailView {
 // ———————————————————————
 
 extension ChecklistDetailView {
+    
+    /// If any checklist item is currently checked, we should disable editing functionality
+    ///
+    
     @ToolbarContentBuilder
     private var trailingToolbar: some ToolbarContent {
-        ToolbarItem(placement: .navigationBarTrailing) {
-            Button {
-                checklist.lines.append(
-                    ChecklineModel(
-                        title: "New item",
-                        order: checklist.lines.count,
-                        action: "Checked"
-                    )
-                )
-            } label: {
-                Image(systemName: "plus.circle")
-            }
-        }
-        ToolbarItem(placement: .navigationBarTrailing) {
-            if checklist.completionState < 1.0 {
-                CircularProgressView(progress: checklist.completionState, lineWidth: 1.8)
-                    .frame(width: 20, height: 20)
-                    .onTapGesture {
-                        withAnimation {
-                            self.reset()
-                        }
-                    }
-                    .padding(.leading, 17)
-            } else {
+        // Display add item button
+        if !isChecking {
+            ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
-                    signChecklist = true
+                    checklist.lines.append(
+                        ChecklineModel(
+                            title: "New item",
+                            order: checklist.lines.count,
+                            action: "Checked"
+                        )
+                    )
                 } label: {
-                    Label("Check done", systemImage: "checkmark.circle")
+                    Image(systemName: "plus.circle")
                 }
-                .tint(.green)
-                .padding(.leading, 0)
+            }
+        } 
+        // Display completion state
+        else {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                if checklist.completionState < 1.0 {
+                    CircularProgressView(progress: checklist.completionState, lineWidth: 1.8)
+                        .frame(width: 20, height: 20)
+                        .onTapGesture {
+                            withAnimation {
+                                self.reset()
+                            }
+                        }
+                        .padding(.leading, 17)
+                } else {
+                    Button {
+                        signChecklist = true
+                    } label: {
+                        Label("Check done", systemImage: "checkmark.circle")
+                    }
+                    .tint(.green)
+                    .padding(.leading, 0)
+                }
             }
         }
     }
+    
 }
 
 
