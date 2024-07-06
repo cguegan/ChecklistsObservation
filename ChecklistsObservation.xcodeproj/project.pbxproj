@@ -14,6 +14,7 @@
 		EF0C09762C3331B6009CCFC3 /* ChecklistPDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0C09752C3331B6009CCFC3 /* ChecklistPDFView.swift */; };
 		EF2B59E62C32E589007A7D85 /* SignChecklistSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2B59E52C32E589007A7D85 /* SignChecklistSheet.swift */; };
 		EF2B59E82C32E5CC007A7D85 /* ExecListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2B59E72C32E5CC007A7D85 /* ExecListModel.swift */; };
+		EF34E7D62C39465C00A094E3 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF34E7D52C39465C00A094E3 /* SettingsView.swift */; };
 		EF6A925A2C372930001109D3 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6A92592C372930001109D3 /* Color+Extensions.swift */; };
 		EF6A925C2C3730D4001109D3 /* PreviewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6A925B2C3730D4001109D3 /* PreviewContainer.swift */; };
 		EF6A925E2C3743C3001109D3 /* AppContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6A925D2C3743C3001109D3 /* AppContainer.swift */; };
@@ -42,6 +43,7 @@
 		EF0C09752C3331B6009CCFC3 /* ChecklistPDFView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistPDFView.swift; sourceTree = "<group>"; };
 		EF2B59E52C32E589007A7D85 /* SignChecklistSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignChecklistSheet.swift; sourceTree = "<group>"; };
 		EF2B59E72C32E5CC007A7D85 /* ExecListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecListModel.swift; sourceTree = "<group>"; };
+		EF34E7D52C39465C00A094E3 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		EF6A92592C372930001109D3 /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
 		EF6A925B2C3730D4001109D3 /* PreviewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewContainer.swift; sourceTree = "<group>"; };
 		EF6A925D2C3743C3001109D3 /* AppContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContainer.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 				EF2B59E52C32E589007A7D85 /* SignChecklistSheet.swift */,
 				EFC968422C31A76A00114A6C /* ChecklineEditSheet.swift */,
 				EF0C09752C3331B6009CCFC3 /* ChecklistPDFView.swift */,
+				EF34E7D52C39465C00A094E3 /* SettingsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 				EFC9684B2C31CE0000114A6C /* ChecklistsView.swift in Sources */,
 				EF6F83092C32043000EF9688 /* CircularProgressBarView.swift in Sources */,
 				EF2B59E82C32E5CC007A7D85 /* ExecListModel.swift in Sources */,
+				EF34E7D62C39465C00A094E3 /* SettingsView.swift in Sources */,
 				EF0C096E2C330BE4009CCFC3 /* DrawSignatureView.swift in Sources */,
 				EFC9683C2C31A08900114A6C /* ChecklistDetailView.swift in Sources */,
 				EF0C09702C330C7A009CCFC3 /* SignatureView.swift in Sources */,

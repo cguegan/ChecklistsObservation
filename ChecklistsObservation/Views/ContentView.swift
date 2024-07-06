@@ -27,6 +27,12 @@ struct ContentView: View {
                     }
             }
             
+            SettingsView()
+                .environment(checklistsStore)
+                .tabItem {
+                    Label("Settings", systemImage: "gear")
+                }
+            
         }
     }
 }
