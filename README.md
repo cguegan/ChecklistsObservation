@@ -20,7 +20,7 @@ The purpose of this app is to study Swiftui + SwiftData architecture.
 - [x] Swap toolbar on checklist detail view
 - [x] Disable editing when user starts to execute
 - [x] Start Settings View
-- [ ] Change the name of the app to YachtChecklists
+- [x] Change the name of the app to YachtChecklists
 - [ ] Export PDF of executed checklists
 - [ ] Export PDF of blank checklists
 - [ ] Save executed checklists
